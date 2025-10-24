@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оккультные науки</title>
+    <style>
+        /* Базовые стили */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background-color: #0d0d0d;
+            color: #e6e6e6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1a1a1a, #262626);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #444;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #992222;
+            text-shadow: 0 0 10px #771111;
+        }
+
+        nav {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        nav a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #fff;
+            background: #992222;
+        }
+
+        main {
+            flex: 1; /* тянется между header и footer */
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #992222;
+            text-align: center;
+        }
+
+        /* Главная страница */
+        #home .container {
+            text-align: center;
+        }
+        #home p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Категории */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #771111;
+        }
+
+        .content-section {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+        .content-section h2 {
+            color: #992222;
+            margin-top: 20px;
+        }
+
+        /* Футер */
+        footer {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #444;
+            margin-top: auto; /* прижимает футер вниз */
+        }
+        footer p {
+            margin: 5px 0;
+            color: #888;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #992222;
+            color: #e6e6e6;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #771111;
+        }
+
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+            .section-title {
+                font-size: 1.6em;
+            }
+        }
+
+@media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .section-title {
+                font-size: 1.4em;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Оккультные науки</h1>
+        <nav>
+            <a href="#" onclick="showPage('home')">Главная</a>
+            <a href="#" onclick="showPage('categories')">Категории</a>
+            <a href="#" onclick="showPage('history')">История</a>
+            <a href="#" onclick="showPage('about')">О проекте</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Главная -->
+        <section id="home" class="page active">
+            <div class="container">
+                <h2 class="section-title">Добро пожаловать</h2>
+                <p>Этот сайт посвящён миру оккультных наук. Здесь вы найдёте знания о древних практиках, мистических традициях и эзотерических учениях, которые веками вдохновляли искателей истины.</p>
+                <a href="#" class="btn" onclick="showPage('categories')">Перейти к категориям</a>
+            </div>
+        </section>
+
+        <!-- Категории -->
+        <section id="categories" class="page">
+            <div class="container">
+                <h2 class="section-title">Категории</h2>
+                <div class="categories">
+                    <div class="card" onclick="showPage('astrology')">
+                        <h3>Астрология</h3>
+                        <p>Звёзды и планеты, влияющие на судьбу.</p>
+                    </div>
+                    <div class="card" onclick="showPage('alchemy')">
+                        <h3>Алхимия</h3>
+                        <p>Искусство превращения и философский камень.</p>
+                    </div>
+                    <div class="card" onclick="showPage('divination')">
+                        <h3>Гадание</h3>
+                        <p>Таро, руны и древние практики прорицания.</p>
+                    </div>
+                    <div class="card" onclick="showPage('numerology')">
+                        <h3>Нумерология</h3>
+                        <p>Магия чисел и их тайные значения.</p>
+                    </div>
+                    <div class="card" onclick="showPage('kabbalah')">
+                        <h3>Каббала</h3>
+                        <p>Мистическое учение о строении мироздания.</p>
+                    </div>
+                    <div class="card" onclick="showPage('necromancy')">
+                        <h3>Некромантия</h3>
+                        <p>Древнее искусство общения с мёртвыми.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- История -->
+        <section id="history" class="page">
+            <div class="container">
+                <h2 class="section-title">История оккультных наук</h2>
+                <div class="content-section">
+                    <h2>Древний мир</h2>
+                    <p>Истоки оккультных знаний восходят к Египту, Месопотамии, Индии и Китаю. Жрецы и мудрецы наблюдали за звёздами, изучали числа и верили в скрытые силы природы.</p>
+                    <h2>Античность</h2>
+                    <p>Греки и римляне развивали школы мистерий, астрологию и философию. Гермес Трисмегист стал символом эзотерической мудрости.</p>
+                    <h2>Средневековье</h2>
+                    <p>В Европе оккультные науки сочетались с алхимией и каббалой. Они часто считались запретными, но тайно передавались в трактатах.</p>
+                    <h2>Эпоха Возрождения</h2>
+                    <p>Возродился интерес к магии, алхимии и астрологии. Мыслители стремились объединить мистику и науку.</p>
+
+<h2>Новый и новейший времена</h2>
+                    <p>Возникли тайные общества (розенкрейцеры, масоны), а в XIX веке — спиритизм и оккультные ордена.</p>
+                    <h2>Современность</h2>
+                    <p>Сегодня оккультные науки изучаются как часть эзотерической культуры и психологии.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Астрология -->
+        <section id="astrology" class="page">
+            <div class="container">
+                <h2 class="section-title">Астрология</h2>
+                <div class="content-section">
+                    <p>Астрология изучает влияние небесных тел на судьбу и характер человека. Она делится на направления:</p>
+                    <ul>
+                        <li><b>Натальная астрология</b> — анализ гороскопа рождения.</li>
+                        <li><b>Мунданная астрология</b> — предсказания для стран и народов.</li>
+                        <li><b>Хорарная астрология</b> — ответы на конкретные вопросы.</li>
+                        <li><b>Синастрия</b> — совместимость людей.</li>
+                        <li><b>Элективная астрология</b> — выбор благоприятного времени.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Алхимия -->
+        <section id="alchemy" class="page">
+            <div class="container">
+                <h2 class="section-title">Алхимия</h2>
+                <div class="content-section">
+                    <p>Алхимия — это не только поиск философского камня и превращение металлов в золото. Она также символизировала внутреннее преображение человека.</p>
+                    <p>Основные идеи алхимии:</p>
+                    <ul>
+                        <li>Вера в первоматерию — основу всех элементов.</li>
+                        <li>Поиск философского камня как источника мудрости.</li>
+                        <li>Создание эликсира вечной жизни.</li>
+                        <li>Символическая работа с процессами растворения и соединения.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Гадание -->
+        <section id="divination" class="page">
+            <div class="container">
+                <h2 class="section-title">Гадание</h2>
+                <div class="content-section">
+                    <p>Гадание — это попытка узнать будущее или скрытые истины через символы и образы.</p>
+                    <p>Наиболее распространённые практики:</p>
+                    <ul>
+                        <li>Карты Таро.</li>
+                        <li>Руны.</li>
+                        <li>Астрологические прогнозы.</li>
+                        <li>И-цзин (Книга перемен).</li>
+                        <li>Хиромантия — гадание по ладони.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Нумерология -->
+        <section id="numerology" class="page">
+            <div class="container">
+                <h2 class="section-title">Нумерология</h2>
+                <div class="content-section">
+                    <p>Нумерология изучает символику чисел и их влияние на жизнь.</p>
+                    <p>Основные направления:</p>
+                    <ul>
+                        <li><b>Число судьбы</b> — ключевой жизненный путь.</li>
+                        <li><b>Число души</b> — внутренние стремления.</li>
+                        <li><b>Кармические числа</b> — уроки, которые нужно пройти.</li>
+                        <li><b>Матрица Пифагора</b> — система анализа личности.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Каббала -->
+        <section id="kabbalah" class="page">
+            <div class="container">
+
+<h2 class="section-title">Каббала</h2>
+                <div class="content-section">
+                    <p>Каббала — мистическое учение, раскрывающее тайны мироздания и связь человека с Богом.</p>
+                    <p>Основные идеи:</p>
+                    <ul>
+                        <li>Древо Сефирот — схема устройства вселенной.</li>
+                        <li>Учение о десяти сферах и 22 путях.</li>
+                        <li>Медитация на священные тексты и имена.</li>
+                        <li>Поиск внутреннего единения с высшей силой.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Некромантия -->
+        <section id="necromancy" class="page">
+            <div class="container">
+                <h2 class="section-title">Некромантия</h2>
+                <div class="content-section">
+                    <p>Некромантия — древняя практика общения с душами умерших для получения знаний.</p>
+                    <p>В разные эпохи её связывали с:</p>
+                    <ul>
+                        <li>Прорицаниями предков.</li>
+                        <li>Обрядами вызова духов.</li>
+                        <li>Поиском знаний о загробном мире.</li>
+                        <li>Магическими ритуалами в мистических школах.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- О проекте -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2 class="section-title">О проекте</h2>
+                <p>Этот сайт создан как проводник в мир оккультных знаний. Здесь собраны основные направления эзотерики, чтобы каждый мог открыть для себя тайны древних традиций.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Оккультные науки</p>
+        <p>Сайт для исследователей мистического</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
